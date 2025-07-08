@@ -17,6 +17,7 @@ jobs:
           curl --version  # or even just this will show up
           
       - name: Print GitHub Ref
+        if: startsWith( "${{ github.ref }}" , 'refs/heads/test' )
         run:  |
           echo "GitHub Ref: ${{ github.ref }}"
 
