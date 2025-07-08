@@ -16,3 +16,7 @@ jobs:
           echo "Running dispatch trigger..."
           curl --version  # or even just this will show up
           
+      - name: Print GitHub Ref
+        run:  |
+          echo "GitHub Ref: ${{ github.ref }}"
+
