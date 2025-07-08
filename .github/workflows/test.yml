@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - namee: Visible Step
+      - name: Visible Step
         run: |
           echo "Running dispatch trigger..."
           curl --version  # or even just this will show up
