@@ -17,7 +17,8 @@ pipeline {
         }
         stage('Lint & Validate') { 
             steps { 
-                sh '''aws cloudformation validate-template --template-body file://${TEMPLATE_FILE} ''' 
+              def utils = load 'updateCf.groovy'
+              utils.validateTemplate("my-prod-stack","template.yml")
             } 
         }
     }
