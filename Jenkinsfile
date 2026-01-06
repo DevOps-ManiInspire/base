@@ -20,7 +20,7 @@ pipeline {
                 script {
                 def utils = load 'cft_utils.groovy'
                 utils.validateTemplate("my-prod-stack","${WORKSPACE}/template.yml")
-                //utils.createChangeSet("my-prod-stack","${WORKSPACE}/template.yml")
+                utils.createChangeSet("my-prod-stack","${WORKSPACE}/template.yml")
                 utils.updateStack("my-prod-stack","${WORKSPACE}/template.yml")
                 }
             } 
