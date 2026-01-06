@@ -17,8 +17,10 @@ pipeline {
         }
         stage('Lint & Validate') { 
             steps { 
+                script {
               def utils = load 'updateCf.groovy'
               utils.validateTemplate("my-prod-stack","template.yml")
+                }
             } 
         }
     }
