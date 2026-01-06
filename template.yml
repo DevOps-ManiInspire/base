@@ -5,4 +5,4 @@ Resources:
   MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: my-simple-cft-bucket-12345
+      BucketName: bucet-ani-001-test-useast
