@@ -6,8 +6,19 @@ pipeline {
         STACK_NAME = "my-prod-stack" 
         TEMPLATE_FILE = "template.yml"
     }
+    
 
     stages {
+        stage('Install AWS CLI') {
+            steps {
+                sh '''
+                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+                unzip awscliv2.zip
+                ./aws/install
+                aws --version
+                '''
+            }
+        }
         stage('checkout') {
             steps {
                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/DevOps-ManiInspire/base.git']])
@@ -15,7 +26,7 @@ pipeline {
         }
         stage('Lint & Validate') { 
             steps { 
-                sh ''' pip install cfn-lint awscli cfn-lint ${TEMPLATE_FILE} aws cloudformation validate-template --template-body file://${TEMPLATE_FILE} ''' 
+                sh '''aws cloudformation validate-template --template-body file://${TEMPLATE_FILE} ''' 
             } 
         }
     }
