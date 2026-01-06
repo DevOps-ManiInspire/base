@@ -5,3 +5,5 @@ def validateTemplate(stackName, templatePath, region = "us-east-1") {
         --template-body file:///${templatePath}.yml
     """
 }
+
+return this
