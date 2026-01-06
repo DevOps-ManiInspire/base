@@ -19,7 +19,7 @@ pipeline {
             steps { 
                 script {
               def utils = load 'cft_utils.groovy'
-              utils.validateTemplate("my-prod-stack","./template.yml")
+              utils.validateTemplate("my-prod-stack","${WORKSPACE}/template.yml")
                 }
             } 
         }
