@@ -6,7 +6,7 @@ def validateTemplate(stackName, templateFile, region = "us-east-1") {
     """
 }
 
-def createChangeSet(stackName, region = "us-east-1") { 
+def createChangeSet(stackName, templateFile, region = "us-east-1") {
     sh """#!/usr/bin/env 
         bash set -e 
             aws --region ${region} cloudformation create-change-set \
