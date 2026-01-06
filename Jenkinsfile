@@ -9,12 +9,19 @@ pipeline {
     
 
     stages {
-        stage('Install AWS CLI') {
+ stage('Install AWS CLI (runtime)') {
             steps {
                 sh '''
-                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
-                unzip awscliv2.zip
-                ./aws/install
+                set -e
+
+                curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o awscliv2.zip
+                unzip -q awscliv2.zip
+
+                ./aws/install \
+                  -i $HOME/aws-cli \
+                  -b $HOME/bin
+
+                export PATH=$HOME/bin:$PATH
                 aws --version
                 '''
             }
