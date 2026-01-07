@@ -1,7 +1,6 @@
-def utils = load 'cft_utils.groovy'
-
 pipeline {
     agent any
+    def utils = load 'cft_utils.groovy'
 
     environment { 
         AWS_REGION = "us-east-1" 
