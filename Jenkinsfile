@@ -8,6 +8,7 @@ pipeline {
         STACK_NAME = "${params.StackName}"
         TEMPLATE_FILE = "${params.TemplateFile}"
         PATH = "${env.HOME}/bin:${env.PATH}"
+        CREATE_CHANGESET = "${params.SkipChangeSet}"
     }
     stages {
          stage('Init') {
@@ -32,6 +33,11 @@ pipeline {
             } 
         }
          stage('CreateChangeSet') { 
+            when {
+                expression {
+                    return env.CREATE_CHANGESET == 'Yes';
+                   }
+               }
             steps { 
                 script {
                     utils.createChangeSet("my-prod-stack","${WORKSPACE}/template.yml")
