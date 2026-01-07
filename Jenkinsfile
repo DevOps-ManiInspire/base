@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    def utils = load 'cft_utils.groovy'
 
     environment { 
         AWS_REGION = "us-east-1" 
@@ -19,6 +18,7 @@ pipeline {
         stage('Lint & Validate') { 
             steps { 
                 script {
+                utils = load 'cft_utils.groovy'
                 utils.validateTemplate("my-prod-stack","${WORKSPACE}/template.yml")
                 utils.createChangeSet("my-prod-stack","${WORKSPACE}/template.yml")
                 utils.updateStack("my-prod-stack","${WORKSPACE}/template.yml")
