@@ -10,6 +10,15 @@ pipeline {
     
 
     stages {
+         stage('Init') {
+            steps {
+                script {
+                    env.STACK_NAME    = params.StackName
+                    env.TEMPLATE_FILE = params.TemplateFile
+                    utils = load 'cft_utils.groovy'
+                }
+            }
+        }
         stage('checkout') {
             steps {
                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/DevOps-ManiInspire/base.git']])
