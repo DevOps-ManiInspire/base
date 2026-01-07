@@ -3,8 +3,8 @@ pipeline {
 
     environment { 
         AWS_REGION = "us-east-1" 
-        STACK_NAME = "my-prod-stack" 
-        TEMPLATE_FILE = "template.yml"
+        STACK_NAME = ${params.StackName}
+        TEMPLATE_FILE = ${params.TemplateFile}
         PATH = "${env.HOME}/bin:${env.PATH}"
     }
     
