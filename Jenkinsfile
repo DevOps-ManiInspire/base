@@ -57,15 +57,14 @@ pipeline {
                         ]
                     )
 
-                    if (proceed == 'Yes') {
-                        echo "ChangeSet approved. Proceeding to Deployment"
-                    } else {
-                         echo "ChangeSet rejected by user. Skipping deployment."
-                        env.PROCEED_DEPLOY = 'No'
-                        return
-                    }
+                if (proceed == 'Yes') {
+                    echo "ChangeSet approved. Proceeding to Deployment"
+                } else {
+                    echo "ChangeSet rejected by user. Skipping deployment."
+                    env.PROCEED_DEPLOY = 'No'
+                    return
+                }
                 env.PROCEED_DEPLOY = (proceed == 'Yes') ? 'Yes' : 'No'
-
                 }
             } 
         }
