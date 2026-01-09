@@ -35,7 +35,7 @@ pipeline {
          stage('CreateChangeSet') { 
             when {
                 expression {
-                    return env.CREATE_CHANGESET == 'Yes';
+                    return env.CREATE_CHANGESET == 'No';
                    }
                }
             steps { 
