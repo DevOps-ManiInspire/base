@@ -62,7 +62,7 @@ pipeline {
                 } else {
                     echo "ChangeSet rejected by user. Skipping deployment."
                     env.PROCEED_DEPLOY = 'No'
-                    currentBuild.getRawBuild().getExecutor().interrupt(Result.SUCCESS)
+                    
                 }
                 env.PROCEED_DEPLOY = (proceed == 'Yes') ? 'Yes' : 'No'
                 }
@@ -76,7 +76,7 @@ pipeline {
                 }
                 steps {
                     script {
-                        echo env.PROCEED_DEPLOY
+                        echo "${proceed}"
                         echo env.CREATE_CHANGESET
                         utils.updateStack(
                             env.STACK_NAME,
