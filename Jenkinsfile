@@ -28,7 +28,7 @@ pipeline {
         stage('Lint & Validate') { 
             steps { 
                 script {
-                    utils.validateTemplate(${env.STACK_NAME},"${WORKSPACE}/${env.TEMPLATE_FILE}")
+                    utils.validateTemplate(env.STACK_NAME, "${env.WORKSPACE}/${env.TEMPLATE_FILE}")
                 }
             } 
         }
