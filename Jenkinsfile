@@ -60,7 +60,9 @@ pipeline {
                     if (proceed == 'Yes') {
                         echo "ChangeSet approved. Proceeding to Deployment"
                     } else {
-                        success "Changeset aborted by user."
+                         echo "ChangeSet rejected by user. Skipping deployment."
+                        env.PROCEED_DEPLOY = 'No'
+                        return
                     }
                 env.PROCEED_DEPLOY = (proceed == 'Yes') ? 'Yes' : 'No'
 
