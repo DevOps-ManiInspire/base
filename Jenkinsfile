@@ -76,6 +76,8 @@ pipeline {
                 }
                 steps {
                     script {
+                        echo env.PROCEED_DEPLOY
+                        echo env.CREATE_CHANGESET
                         utils.updateStack(
                             env.STACK_NAME,
                             "${env.WORKSPACE}/${env.TEMPLATE_FILE}"
