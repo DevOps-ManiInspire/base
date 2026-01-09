@@ -75,7 +75,6 @@ pipeline {
                 }
                 steps {
                     script {
-                        echo "${proceed}"
                         echo env.CREATE_CHANGESET
                         utils.updateStack(
                             env.STACK_NAME,
