@@ -11,6 +11,11 @@ pipeline {
         PATH = "${env.HOME}/bin:${env.PATH}"
     }
     stages {
+        stage('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/DevOps-ManiInspire/base/']]])
+            }
+        }
          stage('Init') {
             steps {
                 script {
@@ -18,11 +23,6 @@ pipeline {
                     env.TEMPLATE_FILE = params.TemplateFile
                     utils = load 'cft_utils.groovy'
                 }
-            }
-        }
-        stage('checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/DevOps-ManiInspire/base/']]])
             }
         }
         stage('Lint & Validate') { 
