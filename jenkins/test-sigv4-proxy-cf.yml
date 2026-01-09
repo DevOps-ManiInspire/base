@@ -5,4 +5,4 @@ Resources:
   MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: bucet-ani-001-test-useast
+      BucketName: bucet-ani-001-test-useasttemp
