@@ -8,12 +8,12 @@ def validateTemplate(stackName, templateFile, region = "us-east-1") {
     """
     }
 
-def createChangeSet(stackName, templateFile, region = "us-east-1") {
+def createChangeSet(stackName, buildNumber, templateFile, region = "us-east-1") {
     sh """#!/usr/bin/env bash
     set -e
     aws --region ${region} cloudformation create-change-set \
         --stack-name ${stackName} \
-        --change-set-name ${stackName}-changeset \
+        --change-set-name ${stackName}-${buildNumber}-changeset \
         --template-body file:///${templateFile} \
         --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
     """
