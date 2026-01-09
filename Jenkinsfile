@@ -65,6 +65,7 @@ pipeline {
                     return
                 }
                 env.PROCEED_DEPLOY = (proceed == 'Yes') ? 'Yes' : 'No'
+                echo env.PROCEED_DEPLOY
                 }
             } 
         }
