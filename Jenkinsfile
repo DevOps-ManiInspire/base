@@ -40,7 +40,11 @@ pipeline {
                }
             steps { 
                 script {
-                    utils.createChangeSet(${env.STACK_NAME},"${env.BUILD_NUMBER}","${env.WORKSPACE}/${env.TEMPLATE_FILE}")
+                    utils.createChangeSet(
+                        env.STACK_NAME,
+                        env.BUILD_NUMBER,
+                        "${env.WORKSPACE}/${env.TEMPLATE_FILE}"
+                    )
                 def proceed = input(
                         message: 'ChangeSet created. Do you want to proceed?',
                         ok: 'Continue',
