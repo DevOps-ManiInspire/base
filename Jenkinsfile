@@ -22,6 +22,7 @@ pipeline {
                     env.STACK_NAME    = params.StackName
                     env.TEMPLATE_FILE = params.TemplateFile
                     utils = load 'cft_utils.groovy'
+                    env.PROCEED_DEPLOY = 'Yes'
                 }
             }
         }
@@ -70,7 +71,7 @@ pipeline {
             stage('DeployStack') {
                 when {
                   expression {
-                        env.PROCEED_DEPLOY == 'Yes' || env.CREATE_CHANGESET == 'No'
+                        env.PROCEED_DEPLOY == 'Yes'
                     }
                 }
                 steps {
