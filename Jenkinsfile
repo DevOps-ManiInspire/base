@@ -62,10 +62,9 @@ pipeline {
                 } else {
                     echo "ChangeSet rejected by user. Skipping deployment."
                     env.PROCEED_DEPLOY = 'No'
-                    return
+                    currentBuild.getRawBuild().getExecutor().interrupt(Result.SUCCESS)
                 }
                 env.PROCEED_DEPLOY = (proceed == 'Yes') ? 'Yes' : 'No'
-                echo env.PROCEED_DEPLOY
                 }
             } 
         }
